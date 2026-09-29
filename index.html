@@ -962,5 +962,21 @@ document.getElementById('policySearch').addEventListener('input',e=>renderPolici
 /* ---------- init ---------- */
 renderClaims();renderQuotes();renderPolicies('');
 </script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="37abfb98-a4e2-41d0-897f-1345258162bb" data-domains="insurance.streamlinecy.com"></script>
+<script>
+/* Anonymous screen views only: no form values, demo records, or visitor identifiers. */
+(function () {
+  var screens = ['overview','claims','intake','assistant','quotes','policies'];
+  function track(screen) {
+    if (window.umami && screens.indexOf(screen) !== -1) window.umami.track('screen_view', {screen: screen});
+  }
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('[data-tab]');
+    if (button && document.querySelector('#view-app.on')) track(button.dataset.tab);
+  });
+  var enter = document.querySelector('#view-login .btn-dark');
+  if (enter) enter.addEventListener('click', function () { track('overview'); });
+})();
+</script>
 </body>
 </html>
