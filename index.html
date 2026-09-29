@@ -230,6 +230,56 @@ table.cmp tr.best td{font-weight:700}
 .note{font-size:12px;color:var(--muted);margin-top:14px}
 .search-inp{border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px;width:260px;font-family:inherit}
 .hide{display:none!important}
+
+/* ---------- mobile ---------- */
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl-scroll table.tbl{min-width:640px}
+.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp-scroll table.cmp{min-width:700px}
+@media(max-width:760px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;position:static;height:auto}
+  .sb-brand{padding:13px 16px}
+  .sb-nav{display:flex;overflow-x:auto;padding:10px 12px;gap:4px}
+  .sb-nav button{white-space:nowrap;width:auto;margin-bottom:0;flex:none}
+  .sb-nav .cnt{margin-left:7px}
+  .sb-sec,.sb-branch{display:none}
+  .sb-foot{display:flex;align-items:center;gap:4px;padding:8px 12px}
+  .sb-foot button{width:auto;white-space:nowrap}
+  .sb-foot .ribbon2{margin:0 0 0 auto;padding:0 6px;text-align:right}
+  .content{padding:20px 14px 44px}
+  .hero{padding:44px 20px 52px;gap:34px}
+  .hero h1{font-size:35px}
+  .hero-stats{font-size:13px}
+  .lnav{padding:14px 16px}
+  .lnav-links{gap:16px}
+  .lnav-links a{display:none}
+  .section{padding:46px 20px}
+  .sec-head{margin-bottom:30px}
+  .sec-head h2{font-size:28px}
+  .teaser{padding:30px 24px;gap:30px}
+  .teaser h2{font-size:26px}
+  .mini-kpis{gap:10px}
+  .field-list{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr;gap:10px}
+  .kpi{padding:14px}
+  .kpi .v{font-size:22px}
+  .notice{flex-direction:column;align-items:flex-start;gap:8px}
+  .notice a{margin-left:0}
+  .topbar h1{font-size:21px}
+  .chart{gap:8px;height:130px}
+  .chart-labels{gap:8px}
+  .qactions .btn{flex:1 1 40%;justify-content:center}
+  .ribbon{font-size:11px;padding:6px 10px;gap:6px}
+  .login-card{padding:30px 24px}
+  .toolbar{flex-direction:column;align-items:flex-start}
+  .search-inp{width:100%}
+  .sched-item .tm{display:none}
+  .detail-head h2{font-size:15.5px}
+  .msg{max-width:88%}
+  table.cmp th,table.cmp td{padding:10px 12px;font-size:12.5px}
+  footer.lfoot{padding:36px 16px 24px}
+}
 </style>
 </head>
 <body>
@@ -388,7 +438,7 @@ table.cmp tr.best td{font-weight:700}
         <button data-tab="policies" onclick="showTab('policies')">▦&nbsp;&nbsp;Policies<span class="cnt">8</span></button>
       </nav>
       <div class="sb-sec">Branch</div>
-      <div style="padding:0 18px;font-size:13px;color:#b6c8d9">Nicosia Central<br><span style="font-size:11.5px;color:#7e94a9">All branches visible</span></div>
+      <div class="sb-branch" style="padding:0 18px;font-size:13px;color:#b6c8d9">Nicosia Central<br><span style="font-size:11.5px;color:#7e94a9">All branches visible</span></div>
       <div class="sb-foot">
         <button onclick="showView('landing')">&larr; View website</button>
         <button onclick="resetDemo()">&#8635; Reset demo data</button>
@@ -451,10 +501,10 @@ table.cmp tr.best td{font-weight:700}
           <button data-f="REJECTED">Rejected</button>
         </div>
         <div class="panel2" style="padding:8px 18px">
-          <table class="tbl">
+          <div class="tbl-scroll"><table class="tbl">
             <thead><tr><th>Claimant</th><th>Type</th><th>Submitted</th><th>Amount</th><th>Status</th><th></th></tr></thead>
             <tbody id="claimsBody"></tbody>
-          </table>
+          </table></div>
         </div>
         <div class="hint">Click a claim to view the extracted fields, the drafted client reply and its timeline. Claims you add through AI intake appear here and are saved in this browser.</div>
       </div>
@@ -598,10 +648,10 @@ XYZ Insurance Claims Team</textarea>
             <div class="qf full"><button class="btn btn-dark btn-sm" type="submit">Compare quotes</button></div>
           </form>
           <div class="hide" id="quoteOut">
-            <table class="cmp">
+            <div class="cmp-scroll"><table class="cmp">
               <thead><tr><th>Insurer</th><th>Annual premium</th><th>Excess</th><th>Roadside / extras</th><th>24h claims line</th><th>Online portal</th></tr></thead>
               <tbody id="cmpBody"></tbody>
-            </table>
+            </table></div>
             <div class="note">Sample comparison generated from fictional rate cards for demonstration. In production this runs against live insurer rate data.</div>
             <div style="margin-top:14px;display:flex;gap:8px">
               <button class="btn btn-dark btn-sm" onclick="saveQuote()">✓ Save quote for client</button>
@@ -611,10 +661,10 @@ XYZ Insurance Claims Team</textarea>
         </div>
         <div class="panel2" style="margin-top:20px">
           <h3 style="font-size:15px;color:var(--navy-900);margin-bottom:12px">Saved quotes</h3>
-          <table class="tbl">
+          <div class="tbl-scroll"><table class="tbl">
             <thead><tr><th>Client</th><th>Type</th><th>Level</th><th>XYZ premium</th><th>Saved</th><th>Status</th></tr></thead>
             <tbody id="quotesBody"></tbody>
-          </table>
+          </table></div>
         </div>
       </div>
 
@@ -625,10 +675,10 @@ XYZ Insurance Claims Team</textarea>
           <input class="search-inp" id="policySearch" placeholder="Search holder or policy no.">
         </div>
         <div class="panel2" style="padding:8px 18px">
-          <table class="tbl">
+          <div class="tbl-scroll"><table class="tbl">
             <thead><tr><th>Policy no.</th><th>Holder</th><th>Type</th><th>Premium / yr</th><th>Renewal</th><th>Status</th></tr></thead>
             <tbody id="policiesBody"></tbody>
-          </table>
+          </table></div>
         </div>
         <div class="hint">Sample register. In production this syncs with the policy admin system and flags renewals 45 days out.</div>
       </div>
